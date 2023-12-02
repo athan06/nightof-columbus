@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Invitation</title>
+    <link rel="stylesheet" href="registrationform.css" />
+  </head>
+  <body>
+    <header class="header">
+      <div class="title">
+        <span class="one">East Systems Colleges of Rizal</span>
+      </div>
+    </header>
+
+    <main class="relative">
+      <div class="pic">
+        <h1 class="animated-text"></h1>
+      </div>
+
+      <form
+        action="https://sheetdb.io/api/v1/ehjqmyz94m40p"
+        method="post"
+        id="qr-form"
+      >
+        <h2>Fill-in the form below. All fields are required.</h2>
+        <div class="name">
+          <label for="fullname"> Full Name</label>
+          <input
+            required
+            type="text"
+            id="fullname"
+            placeholder="fullname"
+            name="fullname"
+          />
+        </div>
+
+        <div class="gender">
+          <label for="gender">Gender </label>
+          <input
+            required
+            type="text"
+            id="gender"
+            placeholder="male or female"
+            name="gender"
+          />
+        </div>
+
+        <div class="Nickname">
+          <label for="Nickname"> Nickname</label>
+          <input
+            required
+            type="text"
+            id="Nickname"
+            placeholder="Nickname"
+            name="Nickname"
+          />
+        </div>
+
+        <div class="address">
+          <label for="address">Address</label>
+          <textarea
+            name="address"
+            id="address"
+            placeholder="address"
+            rows="4"
+            required
+          ></textarea>
+        </div>
+
+        <div class="Birthday">
+          <label for="birthday"> Birthday</label>
+          <input
+            required
+            type="date"
+            name="birthday"
+            max="2023-01-01"
+            required
+            pattern="\d{4}-\d{2}-\d{2}"
+            value="2023-01-01"
+            id="birthday"
+            placeholder="birthday"
+          />
+        </div>
+
+        <button>Submit</button>
+        <input type="reset" id="reset" name="reset" value="Clear form" />
+      </form>
+
+      <div id="stub"></div>
+    </main>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const form = document.getElementById("qr-form");
+
+        form.addEventListener("submit", function (e) {
+          e.preventDefault();
+
+          const formData = new FormData(e.currentTarget);
+
+          const fullname = formData.get("fullname");
+
+          const stubUrl = new URL("/stub.html", window.location.origin);
+          stubUrl.searchParams.set("fullname", fullname);
+          window.location.href = stubUrl.href;
+        });
+      });
+    </script>
+  </body>
+</html>
