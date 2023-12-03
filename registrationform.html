@@ -18,10 +18,7 @@
         <h1 class="animated-text"></h1>
       </div>
 
-      <form
-        action="https://sheetdb.io/api/v1/ehjqmyz94m40p"
-        method="post"
-        id="qr-form"
+      <form id="qr-form"
       >
         <h2>Fill-in the form below. All fields are required.</h2>
         <div class="name">
@@ -90,7 +87,7 @@
       <div id="stub"></div>
     </main>
 
-    <script>
+     <script>
       document.addEventListener("DOMContentLoaded", function () {
         const form = document.getElementById("qr-form");
 
@@ -99,11 +96,18 @@
 
           const formData = new FormData(e.currentTarget);
 
-          const fullname = formData.get("fullname");
-
-          const stubUrl = new URL("/stub.html", window.location.origin);
-          stubUrl.searchParams.set("fullname", fullname);
-          window.location.href = stubUrl.href;
+          fetch("https://sheetdb.io/api/v1/ehjqmyz94m40p", {
+            method: "POST",
+            body: formData,
+          })
+            .then((response) => response.json())
+            .then((data) => {
+              const fullname = formData.get("fullname");
+              const stubUrl = new URL("/stub.html", window.location.origin);
+              stubUrl.searchParams.set("fullname", fullname);
+              window.location.href = stubUrl.href;
+            })
+            .catch((error) => console.error("Error:", error));
         });
       });
     </script>
