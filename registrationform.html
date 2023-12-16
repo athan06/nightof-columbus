@@ -100,9 +100,10 @@
 
           const fullname = formData.get("fullname");
 
-          const stubUrl = new URL("/stub.html", window.location.origin);
+          const stubUrl = new URL("stub.html", window.location.href);
           stubUrl.searchParams.set("fullname", fullname);
           window.location.href = stubUrl.href;
+
         });
       });
     </script>
