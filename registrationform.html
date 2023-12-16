@@ -98,12 +98,18 @@
 
           const formData = new FormData(e.currentTarget);
 
-          const fullname = formData.get("fullname");
-
-          const stubUrl = new URL("stub.html", window.location.href);
-          stubUrl.searchParams.set("fullname", fullname);
-          window.location.href = stubUrl.href;
-
+          fetch("https://sheetdb.io/api/v1/ehjqmyz94m40p", {
+            method: "POST",
+            body: formData,
+          })
+            .then((response) => response.json())
+            .then((data) => {
+              const fullname = formData.get("fullname");
+              const stubUrl = new URL("/stub.html", window.location.origin);
+              stubUrl.searchParams.set("fullname", fullname);
+              window.location.href = stubUrl.href;
+            })
+            .catch((error) => console.error("Error:", error));
         });
       });
     </script>
